@@ -28,7 +28,7 @@ namespace Converter
         private void button_Main_Click(object sender, EventArgs e)
         {
             try
-            {
+            {   
                 int valueindex = Index[comboBox_num.SelectedIndex];
                 int resultindex = Index[comboBox_result.SelectedIndex];
                 textBox_result.Text = NumConverter(textBox_num.Text, valueindex, resultindex);
@@ -67,7 +67,7 @@ namespace Converter
                     if (item < 10)
                         result = item.ToString() + result;
                     else
-                        result += ((char)(item - 10 + 'a')).ToString() + result;
+                        result = ((char)(item - 10 + 'a')).ToString() + result;
 
                     temp /= resultindex;
                 }
