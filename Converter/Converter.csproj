@@ -7,7 +7,7 @@
     <ProjectGuid>{0CB875F6-380C-4DB0-8849-9EC83AE85787}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Converter</RootNamespace>
-    <AssemblyName>Converter</AssemblyName>
+    <AssemblyName>进制转换</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
