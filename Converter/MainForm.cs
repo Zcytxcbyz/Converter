@@ -8,11 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Converter
 {
     public partial class MainForm : Form
     {
+        public string SettingFilePath =
+    Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\"
+    + Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath)
+    + ".dat";
         public int[] Index = { 2, 8, 10, 16 };
         public MainForm()
         {
@@ -23,6 +28,25 @@ namespace Converter
         {
             comboBox_num.SelectedIndex = 0;
             comboBox_result.SelectedIndex = 2;
+            if (File.Exists(SettingFilePath))
+            {
+                FileStream fileStream = new FileStream(SettingFilePath, FileMode.OpenOrCreate, FileAccess.Read);
+                BinaryReader binaryReader = new BinaryReader(fileStream);
+                this.Top = binaryReader.ReadInt32();
+                this.Left = binaryReader.ReadInt32();
+                binaryReader.Close();
+                fileStream.Close();
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FileStream fileStream = new FileStream(SettingFilePath, FileMode.Create, FileAccess.Write);
+            BinaryWriter binaryWriter = new BinaryWriter(fileStream);
+            binaryWriter.Write(this.Top);
+            binaryWriter.Write(this.Left);
+            binaryWriter.Close();
+            fileStream.Close();
         }
 
         private void button_Main_Click(object sender, EventArgs e)
